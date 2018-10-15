@@ -145,3 +145,15 @@ body {
         display: block;
     }
 }
+
+#indicate {
+    padding: 0px 50px;
+}
+
+#map {
+    height: 600px;
+}
+
+.first {
+    display: none;
+}
