@@ -6,6 +6,9 @@ body {
     overflow-x: hidden;
 }
 
+main {
+    overflow: hidden;
+}
 
 .title {
     font-size: 25px;
