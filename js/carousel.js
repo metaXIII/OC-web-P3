@@ -176,7 +176,10 @@ function loadCarousel() {
             })
         }
 
-
+        /**
+         *
+         * @return {event} Permet de retourner un interval de répétition pour passer à la slide suivante
+         */
         animateSlide() {
             return setInterval(() => {
                 this.next()
