@@ -59,4 +59,11 @@ class Canvas {
 
 window.addEventListener('load', () => {
     new Canvas(document.querySelector("#canvas"), {})
+
+    document.getElementById("reservation").addEventListener("submit", e => {
+        let signature = document.getElementById("canvas")
+        let imgSignature = signature.toDataURL("img/png")
+        document.getElementById("output").setAttribute("src", imgSignature)
+        e.preventDefault()
+    })
 })

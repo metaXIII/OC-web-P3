@@ -18,7 +18,7 @@ main {
 }
 
 .item {
-    margin: 40px 10px;
+    margin: 40px 0px;
     background-color: #fff;
     box-shadow: 0 15px 35px #3232321a, 0 5px 15px #0000001a;
     transition: transform 0.3s;
@@ -121,6 +121,7 @@ main {
     left: 0;
     right: 0;
     text-align: center;
+    height: 40px;
 }
 
 .carousel__pagination__button {
@@ -155,6 +156,13 @@ main {
 
 .first {
     display: none;
+}
+
+.fa-pause-circle {
+    position: absolute;
+    right: 5%;
+    font-size: 40px;
+    bottom: 40px;
 }
 
 @media screen and (max-width: 768px) {

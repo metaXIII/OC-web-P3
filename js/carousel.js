@@ -162,13 +162,13 @@ function loadCarousel() {
             if (this.options.infinite)
                 this.container.addEventListener('transitionend', this.resetInfinite.bind(this))
             new CarouselTouchPlugin(this)
-            window.addEventListener("keyup", e => {
-                if ((e.key === "Space" || e.keyCode === 32) && this.options.autoSlide === true) {
+            let pause = document.querySelector(".far.fa-pause-circle")
+            pause.addEventListener("click", () => {
+                if (this.options.autoSlide === true) {
                     this.createDivHelp()
                     this.options.autoSlide = false
                     clearInterval(animate)
-                }
-                else if ((e.key === "Space" || e.keyCode === 32) && this.options.autoSlide === false) {
+                } else {
                     this.createDivHelp()
                     this.options.autoSlide = true
                     animate = this.animateSlide()
@@ -246,6 +246,8 @@ function loadCarousel() {
                     activeButton.classList.add('carousel__pagination__button--active')
                 }
             })
+            let pause = this.createDivWithClass("far fa-pause-circle")
+            pagination.appendChild(pause)
         }
 
         /**
@@ -258,13 +260,11 @@ function loadCarousel() {
                 if (document.getElementById("indicate").hasChildNodes())
                     document.getElementById("indicate").removeChild(document.getElementById("indicate").childNodes[0])
                 document.getElementById("indicate").appendChild(el)
-                console.log(el)
             } else {
                 let el = this.createDivWithClass("alert alert-success")
                 el.textContent = "Reprise du slider"
                 document.getElementById("indicate").removeChild(document.getElementById("indicate").childNodes[0])
                 document.getElementById("indicate").appendChild(el)
-                console.log(el)
             }
         }
 
