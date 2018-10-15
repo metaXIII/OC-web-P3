@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Projet JavaScript</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+          integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+          crossorigin=""/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar navbar-fixed-top bg-dark bg-inverse">
+    <a class="navbar-brand m-auto" href="#">Projet JavaScript</a>
+</nav>
+
+<main role="main">
+    <div class="container m-auto">
+        <div id="carousel">
+            <div class="item">
+                <div class="item__image">
+                    <img src="img/velib.png" alt="">
+                </div>
+                <div class="item__body">
+                    <div class="item__title">
+                        Bienvenu dans cette application
+                    </div>
+                    <div class="item__description">
+                        Petite description pour le carousel
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item__image">
+                    <img src="img/velib2.jpg" alt="">
+                </div>
+                <div class="item__body">
+                    <div class="item__title">
+                        Mon titre 2
+                    </div>
+                    <div class="item__description">
+                        Petite description pour le carousel
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item__image">
+                    <img src="img/velib3.jpg" alt="">
+                </div>
+                <div class="item__body">
+                    <div class="item__title">
+                        Mon titre 3
+                    </div>
+                    <div class="item__description">
+                        Petite description pour le carousel
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="indicate"></div>
+    </div><!-- /.container -->
+    <div class="container">
+        <div class="row">
+            <div id="map" class="map col-sm-8"></div>
+            <div class="col-sm-4">
+                <p>FORM</p>
+
+            </div>
+        </div>
+    </div>
+    <div>
+        <form action="#" method="get" class="form-control" id="reservation">
+            <p>Form</p>
+            <canvas id="canvas" width="800" height="220" style="border: 1px solid;">
+                <p>Le nav</p>
+            </canvas>
+            <input type="submit" value="Envoyer">
+        </form>
+
+    </div>
+    <img src="" alt="" id="output">
+
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+
+</main>
+<!--<script src="./js/jquery-3.3.1.js"></script>-->
+<!--<script src="./js/bootstrap.min.js"></script>-->
+<script src="./js/carousel.js"></script>
+<script src="./js/ajax.js"></script>
+<script src="http://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+        integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+        crossorigin=""></script>
+<script src="./js/map.js"></script>
+<script src="./js/canvas-signature.js"></script>
+
+</body>
+</html>
+
+
+
