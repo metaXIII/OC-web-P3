@@ -151,8 +151,10 @@ main {
 }
 
 #map {
-    height: 600px;
+    height: 800px;
+    overflow: hidden;
 }
+
 
 .first {
     display: none;
@@ -172,5 +174,26 @@ main {
     .carousel {
         overflow: hidden;
     }
+
+    #map {
+        height: 400px;
+    }
 }
 
+.position-initial {
+    background-color: #f7f7f9;
+    position: initial;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+#bookingList:hover ul{
+    display: block;
+}
+
+.menu-deroule li {
+    display: none;
+    list-style-type: none;
+}
