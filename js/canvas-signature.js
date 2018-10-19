@@ -1,7 +1,6 @@
 class Canvas {
     constructor(canvas, options = {}) {
         this.canvas = canvas
-        // this.toResize = true
         this.context = canvas.getContext("2d")
         this.context.strokeStyle = "blue"
         this.context.lineJoin = "round"
@@ -12,7 +11,6 @@ class Canvas {
             clickDrag: [],
             draw: false
         }, options)
-        // this.widthListener()
 
         canvas.addEventListener("mousedown", (e) => {
             this.options.draw = true
@@ -57,27 +55,8 @@ class Canvas {
             this.context.stroke()
         }
     }
-
-    // widthListener() {
-    //     window.addEventListener("resize", (e) => {
-    //         let width = e.target.innerWidth
-    //         let resize = this.toResize
-    //         if (width >= 998 && resize) {
-    //             this.canvas.setAttribute("width", "1200")
-    //         } else if ((width <= 998 && 768) && resize) {
-    //             this.canvas.setAttribute("width", "600")
-    //         }
-    //     })
-    // }
 }
 
 window.addEventListener('load', () => {
     new Canvas(document.querySelector("#canvas"), {})
-
-    document.getElementById("reservation").addEventListener("submit", e => {
-        let signature = document.getElementById("canvas")
-        let imgSignature = signature.toDataURL("img/png")
-        document.getElementById("output").setAttribute("src", imgSignature)
-        e.preventDefault()
-    })
 })
