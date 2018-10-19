@@ -17,10 +17,11 @@
     <a class="h1 text-white">Projet JavaScript</a>
     <ul class="navbar-nav">
         <li class="nav-item" id="bookingList">
-            <a href="#" class="navbar-link text-white">Aucune réservation</a>
-            <ul class="menu-deroule">
-                <li>Nom</li>
-                <li>Prénom</li>
+            <a href="#" class="navbar-link text-white" id="deroule">Aucune réservation</a>
+            <ul id="menu-deroule">
+                <li>
+                    Aucune réservation en cours
+                </li>
             </ul>
         </li>
     </ul>
@@ -99,7 +100,7 @@
                     </div>
                     <div class="form-group">
                         <label for="email">Votre email</label>
-                        <input type="email" class="form-control" name="email" id="email">
+                        <input type="text" class="form-control" name="email" id="email">
                     </div>
                     <div class="form-group">
                         <label for="canvas">Signature: </label>
@@ -112,7 +113,6 @@
             </div>
         </div>
     </div>
-    <img src="" alt="" id="output">
 
     <p></p>
     <p></p>

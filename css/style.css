@@ -61,7 +61,7 @@ main {
 
 .carousel {
     position: relative;
-    /*overflow: hidden;*/
+    overflow: hidden;
 }
 
 .carousel__container {
@@ -189,11 +189,21 @@ main {
     font-weight: bold;
 }
 
-#bookingList:hover ul{
+#bookingList:hover ul li{
     display: block;
 }
 
-.menu-deroule li {
+#menu-deroule li {
     display: none;
     list-style-type: none;
+}
+
+#menu-deroule {
+    display: none;
+    right: 0;
+    z-index: 1;
+    width: 260px;
+    position: absolute;
+    background-color: #fff;
+    padding: 20px 10px;
 }
