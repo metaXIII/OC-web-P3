@@ -148,12 +148,11 @@ function loadCarousel() {
             if (this.options.autoSlide === true) {
                 animate = this.animateSlide()
             }
-
             //Evènements
             this.moveCallbacks.forEach(cb => cb(this.currentItem))
             this.onWindowResize()
             window.addEventListener('resize', this.onWindowResize.bind(this))
-            this.root.addEventListener('keyup', e => {
+            window.addEventListener('keyup', e => {
                 if (e.key === "ArrowRight" || e.key === "Right")
                     this.next()
                 else if (e.key === "ArrowLeft" || e.key === "Left")

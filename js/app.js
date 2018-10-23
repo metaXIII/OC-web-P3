@@ -1,79 +1,58 @@
 let booking = {
     name: '',
     lastname: '',
-    email: '',
-    signature: '',
-    stationName: '',
-    adress: '',
+    stationName: ''
 }
 
-let deroule = document.getElementById("deroule")
-let menuDeroule = document.getElementById("menu-deroule")
+let compteur = new Compteur
 //A l'envoi du formulaire
 document.getElementById("reservation").addEventListener("submit", e => {
+    let nameStation = document.getElementById("nameStation")
     e.preventDefault()
-    let nom = document.getElementById("nom").value
-    let prenom = document.getElementById("prenom").value
-    let email = document.getElementById("email").value
-    let nameStation = document.getElementById("nameStation").value
-    let adress = document.getElementById("address").value
-    let status = document.getElementById("status").value
-    let signature = document.getElementById("canvas")
-    let imgSignature = signature.toDataURL("img/png")
+    if (!nameStation.value) {
+        alert("Une station doit être sélectionnée")
+    } else if (document.getElementById("status").value === "Fermé")
+        alert("La station n'est pas ouverte")
+    else if (/[0]\//.test(document.getElementById("place").innerText))
+        alert("Il n'y a plus de vélos disponibles dans cette station")
+    else {
+        let canvas = new Canvas(document.querySelector("#canvas"), {})
+        document.getElementById("showCanvas").style.display = "block"
 
-    console.log(nameStation)
-    let nameLI = document.createElement("li")
-    let prenomLI = document.createElement("li")
-    let emailLI = document.createElement("li")
-    let nameStationLI = document.createElement("li")
-    let adressLI = document.createElement("li")
-    let signatureLI = document.createElement("li")
-    let imgSignatureIMG = document.createElement("img")
+        document.querySelector(".btn-danger").addEventListener("click", () => {
+            canvas.clear()
+        })
 
-    nameLI.innerText = "nom : " + nom
-    prenomLI.innerText = "prénom" + prenom
-    emailLI.innerText = "votre mail" + email
-    nameStationLI.innerText = "Votre station réservée : " + nameStation
-    adressLI.innerText = "l'adresse de la station : " + adress
-    imgSignatureIMG.setAttribute("src", imgSignature)
+        document.querySelector(".close").addEventListener("click", () => {
+            canvas.clear()
+        })
 
-    //Add some css rules
-    nameLI.classList.add("list-group-item")
-    prenomLI.classList.add("list-group-item")
-    emailLI.classList.add("list-group-item")
-    nameStationLI.classList.add("list-group-item")
-    adressLI.classList.add("list-group-item")
-    signatureLI.classList.add("list-group-item")
-    while (menuDeroule.firstChild) {
-        menuDeroule.removeChild(menuDeroule.firstChild)
+        document.getElementById("showCanvas").addEventListener("click", (e) => {
+            if (e.target.classList.contains("modal")) {
+                canvas.clear()
+            }
+        })
     }
-    menuDeroule.classList.add("list-group")
-    menuDeroule.appendChild(nameLI)
-    menuDeroule.appendChild(prenomLI)
-    menuDeroule.appendChild(emailLI)
-    menuDeroule.appendChild(nameStationLI)
-    menuDeroule.appendChild(adressLI)
-    signatureLI.appendChild(imgSignatureIMG)
-    menuDeroule.appendChild(signatureLI)
-    deroule.innerText = "Vous avez une réservation en cours"
+
+
+    document.querySelector(".btn-primary").addEventListener("click", (e) => {
+        sessionStorage.clear()
+        localStorage.clear()
+        compteur.reset()
+        booking.lastname = document.getElementById("nom").value
+        booking.name = document.getElementById("prenom").value
+        booking.stationName = document.getElementById("nameStation").value
+        sessionStorage.setItem("reservation", booking.stationName)
+        localStorage.setItem("nom", booking.name)
+        localStorage.setItem("prenom", booking.lastname)
+        let reservationList = document.getElementById("reservationList")
+        let bookingSuccess = document.getElementById("bookingSuccess")
+
+        compteur.start()
+        reservationList.innerText = "Vélo réservé à la station " + booking.stationName + " par " +
+            booking.name + " " + booking.lastname
+        bookingSuccess.classList.remove("d-none")
+        document.getElementById("showCanvas").style.display = "none"
+    })
+
 })
-
-
-deroule.addEventListener("mousemove", () => {
-    menuDeroule.style.display = "initial"
-})
-deroule.addEventListener("mouseout", () => {
-    menuDeroule.style.display = "none"
-})
-
-//
-// <li>Nom : LEHCHIBI</li>
-// <li>Prénom : GAEL</li>
-// <li>Nom de la station : GAMBETTA / GARIBALDI (FAR)</li>
-// <li>Cours Gambette - Prolongement rue Rachais</li>
-// <li>Signature :
-// <img src="" alt="" id="output">
-//     </li>
-
-
-//Récupération des données du formulaire

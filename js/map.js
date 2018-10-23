@@ -1,4 +1,4 @@
-let map = L.map('map').setView([45.75, 4.85], 16)
+let map = L.map('map').setView([45.75, 4.85], 13)
 
 L.tileLayer('//{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
@@ -37,6 +37,8 @@ ajaxGet("https://api.jcdecaux.com/vls/v1/stations?contract=lyon&apiKey=353be5658
             document.getElementById("status").value = status
             document.getElementById("place").innerHTML = place + "/" + total + "<span class='bold'>&nbsp;vélos disponibles</span>"
 
+            if (result.available_bikes)
+                document.getElementById("nom").focus()
         })
 
     })
