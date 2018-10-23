@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Projet JavaScript</title>
+    <title>Réservation de vélos</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="http://use.fontawesome.com/releases/v5.4.1/css/all.css"
           integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
@@ -14,17 +14,7 @@
 <body>
 
 <nav class="navbar navbar-expand-lg bg-dark bg-inverse justify-content-between">
-    <a class="h1 text-white">Projet JavaScript</a>
-    <ul class="navbar-nav">
-        <li class="nav-item" id="bookingList">
-            <a href="#" class="navbar-link text-white" id="deroule">Aucune réservation</a>
-            <ul id="menu-deroule">
-                <li>
-                    Aucune réservation en cours
-                </li>
-            </ul>
-        </li>
-    </ul>
+    <a class="h1 text-white">Réservation de vélos</a>
 </nav>
 
 <main role="main">
@@ -36,10 +26,13 @@
                 </div>
                 <div class="item__body">
                     <div class="item__title">
-                        Bienvenu dans cette application
+                        Bienvenu dans cette application de réservation de vélos
                     </div>
                     <div class="item__description">
-                        Petite description pour le carousel
+                        Pour commencer, sachez que vous pouvez faire défiler les instructions avec les touches gauche et
+                        droite
+                        de votre clavier. <br>
+                        Vous pouvez également mettre en pause le slider si nécessaire à l'aide du bouton pause
                     </div>
                 </div>
             </div>
@@ -49,10 +42,11 @@
                 </div>
                 <div class="item__body">
                     <div class="item__title">
-                        Mon titre 2
+                        Choisir une station
                     </div>
                     <div class="item__description">
-                        Petite description pour le carousel
+                        Descendez jusqu'à la carte dans l'application, et sélectionner un marqueur bleu pour préremplir
+                        les informations dans le formulaire
                     </div>
                 </div>
             </div>
@@ -62,10 +56,28 @@
                 </div>
                 <div class="item__body">
                     <div class="item__title">
-                        Mon titre 3
+                        Remplir le formulaire
                     </div>
                     <div class="item__description">
-                        Petite description pour le carousel
+                        Remplissez votre nom, prénom et cliquez sur valider, vous devrez ensuite signer pour effectuer
+                        la
+                        réservation
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item__image">
+                    <img src="img/velib4.png" alt="">
+                </div>
+                <div class="item__body">
+                    <div class="item__title">
+                        Félicitations : votre réservation est prise en compte
+                    </div>
+                    <div class="item__description">
+                        Votre réservation est prise en compte pour une durée de 20 min.
+                        <br>
+                        <span class="text-color-red">Attention : La réservation sera annulé au bout
+                            de 20 min ou si vous quittez le navigateur</span>
                     </div>
                 </div>
             </div>
@@ -74,8 +86,9 @@
     </div><!-- /.container -->
     <div class="container">
         <div class="row p-2">
-            <div id="map" class="map col-lg-8"></div>
-            <div class="col-lg-4 position-initial">
+            <div id="map" class="map offset-lg-0 col-lg-8 col-10 offset-1"></div>
+            <div class="col-lg-4 col-10 offset-1 offset-lg-0 position-initial">
+                <p class="bold">Détails de la station</p>
                 <form action="#" method="get" class="form-control" id="reservation">
                     <div class="form-group">
                         <label for="nameStation">Nom de la station</label>
@@ -92,24 +105,45 @@
                     <p id="place">Nombre de place : </p>
                     <div class="form-group">
                         <label for="nom">Votre nom</label>
-                        <input type="text" class="form-control" name="nom" id="nom">
+                        <input type="text" class="form-control" name="nom" id="nom" required
+                               value="Il faut remplir ce champ">
                     </div>
                     <div class="form-group">
                         <label for="prenom">Votre prénom</label>
-                        <input type="text" class="form-control" name="prenom" id="prenom">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Votre email</label>
-                        <input type="text" class="form-control" name="email" id="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="canvas">Signature: </label>
-                        <canvas id="canvas" width="260" height="220" style="border: 1px solid;">
-                            <p>Le nav</p>
-                        </canvas>
+                        <input type="text" class="form-control" name="prenom" id="prenom" required>
                     </div>
                     <input type="submit" value="Envoyer">
                 </form>
+
+                <!-- modal -->
+                <div class="modal" id="showCanvas">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5>Signature</h5>
+                                <button class="close"><span>&times;</span></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <canvas id="canvas" width="260" height="220" style="border: 1px solid;">
+                                    <p>Le nav</p>
+                                </canvas>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-danger">Annuler</button>
+                                <button class="btn btn-primary">Réserver</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <p class="text-center" id="reservationContainer">
+                    <span id="reservationList"></span> <br>
+                    <span id="timeLeft" class="text-center"></span>
+                </p>
+                <div class="alert alert-success d-none" id="bookingSuccess">Réservation enregistrée</div>
             </div>
         </div>
     </div>
@@ -130,6 +164,8 @@
 <script src="./js/leaflet-color-markers.js"></script>
 <script src="./js/map.js"></script>
 <script src="./js/canvas-signature.js"></script>
+<script src="./js/compteur.js"></script>
+<script src="./js/Storage.js"></script>
 <script src="./js/app.js"></script>
 
 </body>

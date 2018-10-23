@@ -25,10 +25,6 @@ main {
     transform: translate3d(0, -1px, 0);
 }
 
-.item:hover {
-    transform: translate3d(0, -10px, 0);
-}
-
 .item img {
     display: block;
     width: 100%;
@@ -61,7 +57,7 @@ main {
 
 .carousel {
     position: relative;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 .carousel__container {
@@ -174,11 +170,13 @@ main {
     .carousel {
         overflow: hidden;
     }
-
-    #map {
-        height: 400px;
-    }
 }
+@media screen and (max-width: 992px) {
+#map {
+    height: 400px;
+}
+}
+
 
 .position-initial {
     background-color: #f7f7f9;
@@ -206,4 +204,17 @@ main {
     position: absolute;
     background-color: #fff;
     padding: 20px 10px;
+}
+
+.modal {
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+#map {
+    z-index: 1;
+}
+
+.text-color-red {
+    color: #ff0000;
 }
