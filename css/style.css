@@ -169,6 +169,14 @@ main {
     .carousel {
         overflow: hidden;
     }
+
+    .carousel__next {
+        right: 10px;
+    }
+
+    .carousel__prev {
+        left: 10px;
+    }
 }
 @media screen and (max-width: 992px) {
 #map {
