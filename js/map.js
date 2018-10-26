@@ -1,9 +1,14 @@
+/**
+ * Déclaration de la map
+ */
 let map = L.map('map').setView([45.75, 4.85], 13)
 
 L.tileLayer('//{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
     maxZoom: 18
 }).addTo(map)
+
+
 
 //Récupération de la liste des résultats
 ajaxGet("https://api.jcdecaux.com/vls/v1/stations?contract=lyon&apiKey=353be56585eb3eb2d6d5e7352c4bafd5449f2e0c", (results) => {

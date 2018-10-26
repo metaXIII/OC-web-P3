@@ -1,5 +1,9 @@
+/**
+ * @param {string} url précise l'url appelé pour une question
+ * @param {Object} callback précise un objet retourné pour la réponse
+ */
 function ajaxGet(url, callback) {
-    var req = new XMLHttpRequest();
+    let req = new XMLHttpRequest();
     req.open("GET", url);
     req.addEventListener("load", function () {
         if (req.status >= 200 && req.status < 400) {

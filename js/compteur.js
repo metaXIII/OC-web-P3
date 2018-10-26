@@ -1,4 +1,8 @@
 class Compteur {
+    /**
+     *
+     * @param options empty by default
+     */
     constructor(options = {}) {
         this.options = Object.assign({}, {
             min: 20,
@@ -7,6 +11,9 @@ class Compteur {
         this.count = null
     }
 
+    /**
+     * reset timer
+     */
     reset() {
         this.options.min = 20
         this.options.sec = 0
@@ -15,6 +22,9 @@ class Compteur {
         bookingSuccess.classList.add("d-none")
     }
 
+    /**
+     * DOM element
+     */
     timer() {
         if (this.options.sec === 0 && this.options.min === 0) {
             this.reset()
@@ -35,6 +45,9 @@ class Compteur {
     }
 
 
+    /**
+     * lancement du timer
+     */
     start() {
         this.count = setInterval(() => {
             this.timer()
