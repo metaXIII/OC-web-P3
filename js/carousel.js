@@ -161,16 +161,20 @@ function loadCarousel() {
             if (this.options.infinite)
                 this.container.addEventListener('transitionend', this.resetInfinite.bind(this))
             new CarouselTouchPlugin(this)
-            let pause = document.querySelector(".far.fa-pause-circle")
+            let pause = document.getElementById("pause")
             pause.addEventListener("click", () => {
                 if (this.options.autoSlide === true) {
                     this.createDivHelp()
                     this.options.autoSlide = false
                     clearInterval(animate)
+                    pause.classList.remove("fa-pause-circle")
+                    pause.classList.add("fa-play-circle")
                 } else {
                     this.createDivHelp()
                     this.options.autoSlide = true
                     animate = this.animateSlide()
+                    pause.classList.add("fa-pause-circle")
+                    pause.classList.remove("fa-play-circle")
                 }
             })
         }
@@ -246,6 +250,7 @@ function loadCarousel() {
                 }
             })
             let pause = this.createDivWithClass("far fa-pause-circle")
+            pause.setAttribute("id", "pause")
             pagination.appendChild(pause)
         }
 
