@@ -14,14 +14,14 @@ class Canvas {
 
         canvas.addEventListener("mousedown", (e) => {
             this.options.draw = true
-            this.keep(e.pageX - this.canvas.offsetLeft, e.pageY - this.canvas.offsetTop)
+            this.keep(e.clientX - this.canvas.getBoundingClientRect().left, e.clientY - this.canvas.getBoundingClientRect().top)
             this.draw()
         })
 
 
         canvas.addEventListener("mousemove", (e) => {
             if (this.options.draw) {
-                this.keep(e.pageX - this.canvas.offsetLeft, e.pageY - this.canvas.offsetTop, 1)
+                this.keep(e.clientX - this.canvas.getBoundingClientRect().left, e.clientY - this.canvas.getBoundingClientRect().top, 1)
                 this.draw()
             }
         })
@@ -33,6 +33,32 @@ class Canvas {
         canvas.addEventListener("mouseleave", (e) => {
             this.options.draw = false
         })
+
+
+        canvas.addEventListener("touchstart", e => {
+            e.preventDefault()
+            this.options.draw = true
+            this.keep(e.touches[0].clientX - this.canvas.getBoundingClientRect().left, e.touches[0].clientY - this.canvas.getBoundingClientRect().top)
+            this.draw()
+        })
+
+        canvas.addEventListener("touchend", e => {
+            e.preventDefault()
+            this.options.draw = false
+        })
+
+        canvas.addEventListener("touchmove", e => {
+            e.preventDefault()
+            if (this.options.draw) {
+                this.keep(e.touches[0].clientX - this.canvas.getBoundingClientRect().left, e.touches[0].clientY - this.canvas.getBoundingClientRect().top, 1)
+                this.draw()
+            }
+        })
+    }
+
+    clear() {
+        document.getElementById("showCanvas").style.display = "none"
+        this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height) // Clears the canvas
     }
 
     keep(x, y, drag) {
@@ -42,7 +68,7 @@ class Canvas {
     }
 
     draw() {
-        this.context.clearRect(0, 0, this.context.canvas.offsetWidth, this.context.canvas.offsetHeight) // Clears the canvas
+        this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height) // Clears the canvas
         for (let i = 0; i < this.options.xClick.length; i++) {
             this.context.beginPath()
             if (this.options.clickDrag[i] && i) {
@@ -55,15 +81,7 @@ class Canvas {
             this.context.stroke()
         }
     }
+
+
 }
 
-window.addEventListener('load', () => {
-    new Canvas(document.querySelector("#canvas"), {})
-
-    document.getElementById("reservation").addEventListener("submit", e => {
-        let signature = document.getElementById("canvas")
-        let imgSignature = signature.toDataURL("img/png")
-        document.getElementById("output").setAttribute("src", imgSignature)
-        e.preventDefault()
-    })
-})

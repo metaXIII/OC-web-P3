@@ -1,4 +1,4 @@
-let map = L.map('map').setView([45.75, 4.85], 16)
+let map = L.map('map').setView([45.75, 4.85], 13)
 
 L.tileLayer('//{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
@@ -8,23 +8,38 @@ L.tileLayer('//{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
 //Récupération de la liste des résultats
 ajaxGet("https://api.jcdecaux.com/vls/v1/stations?contract=lyon&apiKey=353be56585eb3eb2d6d5e7352c4bafd5449f2e0c", (results) => {
     results = JSON.parse(results)
-    // console.log(results)
     results.forEach((result) => {
-        let marker = L.marker([result.position.lat, result.position.lng]).addTo(map)
+        let latlng = [result.position.lat, result.position.lng]
+        let marker = null
+        if (result.available_bikes && result.status === "OPEN")
+            marker = L.marker(latlng).addTo(map)
+        else if (!result.available_bikes && result.status === "OPEN")
+            marker = L.marker(latlng, {icon: redIcon}).addTo(map)
+        else
+            marker = L.marker(latlng, {icon: blackIcon}).addTo(map)
 
         //Evènements sur les markers
         marker.addEventListener("click", (e) => {
-            console.log(result)
-            //état de la station
-            console.log("État de la station: " + result.status)
+            let nameStation = result.name
+            nameStation = nameStation.replace(/[#0-9\s\-]+/, '')
+            let address = result.address
+            let status = result.status
+            let total = result.available_bike_stands
+            let place = result.available_bikes
 
-            //Nombre de vélos
-            console.log("Capacité totale de vélos: " + result.available_bike_stands)
+            //traitement avant de les ajouter au DOM
+            if (status === "OPEN")
+                status = "Ouvert"
+            else
+                status = "Fermé"
+            document.getElementById("nameStation").value = nameStation
+            document.getElementById("address").value = address
+            document.getElementById("status").value = status
+            document.getElementById("place").innerHTML = place + "/" + total + "<span class='bold'>&nbsp;vélos disponibles</span>"
 
-            //Nombre de vélos disponible
-            console.log("Nombre de vélos disponible: " + result.available_bikes)
+            if (result.available_bikes)
+                document.getElementById("nom").focus()
         })
-
 
     })
 })

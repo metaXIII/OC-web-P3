@@ -25,10 +25,6 @@ main {
     transform: translate3d(0, -1px, 0);
 }
 
-.item:hover {
-    transform: translate3d(0, -10px, 0);
-}
-
 .item img {
     display: block;
     width: 100%;
@@ -115,7 +111,6 @@ main {
 }
 
 .carousel__pagination {
-    display: none;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -151,8 +146,10 @@ main {
 }
 
 #map {
-    height: 600px;
+    height: 800px;
+    overflow: hidden;
 }
+
 
 .first {
     display: none;
@@ -172,5 +169,59 @@ main {
     .carousel {
         overflow: hidden;
     }
+
+    .carousel__next {
+        right: 10px;
+    }
+
+    .carousel__prev {
+        left: 10px;
+    }
+}
+@media screen and (max-width: 992px) {
+#map {
+    height: 400px;
+}
 }
 
+
+.position-initial {
+    background-color: #f7f7f9;
+    position: initial;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+#bookingList:hover ul li{
+    display: block;
+}
+
+#menu-deroule li {
+    display: none;
+    list-style-type: none;
+}
+
+#menu-deroule {
+    display: none;
+    right: 0;
+    z-index: 1;
+    width: 260px;
+    position: absolute;
+    background-color: #fff;
+    padding: 20px 10px;
+}
+
+.modal {
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+#map {
+    z-index: 1;
+}
+
+.text-color-red {
+    color: #ff0000;
+}
