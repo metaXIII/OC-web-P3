@@ -53,6 +53,7 @@ document.getElementById("reservation").addEventListener("submit", e => {
             booking.name + " " + booking.lastname
         bookingSuccess.classList.remove("d-none")
         document.getElementById("showCanvas").style.display = "none"
+        window.scrollTo(0,document.body.scrollHeight);
     })
 
 })
