@@ -1,3 +1,6 @@
+/**
+ * Conservation des données en cache
+ */
 if (localStorage) {
     document.getElementById("nom").value = localStorage.getItem("nom")
     document.getElementById("prenom").value = localStorage.getItem("prenom")
