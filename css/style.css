@@ -33,6 +33,7 @@ main {
 }
 
 .item__body {
+    min-height: 150px;
     padding: 25px;
 }
 
@@ -150,12 +151,11 @@ main {
     overflow: hidden;
 }
 
-
 .first {
     display: none;
 }
 
-.fa-pause-circle {
+.far {
     position: absolute;
     right: 5%;
     font-size: 40px;
@@ -166,6 +166,7 @@ main {
     #carousel {
         overflow: hidden;
     }
+
     .carousel {
         overflow: hidden;
     }
@@ -178,12 +179,12 @@ main {
         left: 10px;
     }
 }
-@media screen and (max-width: 992px) {
-#map {
-    height: 400px;
-}
-}
 
+@media screen and (max-width: 992px) {
+    #map {
+        height: 400px;
+    }
+}
 
 .position-initial {
     background-color: #f7f7f9;
@@ -194,7 +195,7 @@ main {
     font-weight: bold;
 }
 
-#bookingList:hover ul li{
+#bookingList:hover ul li {
     display: block;
 }
 
@@ -214,8 +215,8 @@ main {
 }
 
 .modal {
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
 #map {
@@ -224,4 +225,24 @@ main {
 
 .text-color-red {
     color: #ff0000;
+}
+
+
+/***
+Responsive
+ */
+
+@media screen and (max-width: 576px){
+    .carousel__prev, .carousel__next {
+        display: none;
+    }
+
+    .carousel__item {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    #indicate {
+        padding: 0;
+    }
 }
